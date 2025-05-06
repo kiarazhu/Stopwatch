@@ -5,12 +5,12 @@ To make the stopwatch, I will be using the ATmega324A microcontroller. For a qui
 ## The Goal
 
 The stopwatch will count up and have two digits illuminated to represent the time elapsed in seconds:
-- The ones and tenths place, along with the decimal point, will be illuminated when counting from 0.0-9.9s. The display will increment every 0.1s.
-- The tens and ones place will be illuminated when counting from 10-99s. The display will update every 1s.
+- When counting from 0.0-9.9, the ones and tenths place, along with the decimal point, will be illuminated. The display will increment every 0.1s.
+- When counting from 10-99s, the tens and ones place will be illuminated. The display will update every 1s.
 
 The stopwatch will also have two buttons:
 - Start/stop button: 
-- Reset button: Sends the stopwatch to a reset state, turning off the display and setting the time elapsed to 0.
+- Reset button: Sends the stopwatch to a reset state, turning off the display and clearing the time elapsed.
 
 ## State Diagram
 
