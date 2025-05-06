@@ -1,2 +1,5 @@
 # Stopwatch
-Implementation of a stopwatch using the ATmega324A microcontroller.
+
+## Setting up Timer/Counter 1
+
+## Setting up Interrupts
