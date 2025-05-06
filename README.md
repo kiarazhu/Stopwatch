@@ -1,6 +1,6 @@
 # Stopwatch
 
-<a href="/kiarazhu/seven-segment-display/README.md"> Seven Segment Display </a>
+<a href="https://github.com/kiarazhu/Seven-Segment-Display"> Seven Segment Display </a>
 
 ## Setting up Timer/Counter 1
 
