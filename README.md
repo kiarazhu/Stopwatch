@@ -24,8 +24,13 @@ To implement the stopwatch, I will be using the ATmega324A microcontroller. The 
 
 
 ### Output Compare Register 1 A
+CLK / PRE = 8 000 000 / 8 = 1 000 000 ticks / second
 
-9999
+1 000 000 / 100 = 1 000 clock cycles every 10ms
+
+1000 - 1 = 9999
+
+OCR1A = 9999
 
 ### Timer/Counter 1 Control Register A
 
