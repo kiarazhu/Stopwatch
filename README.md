@@ -21,9 +21,10 @@ To implement the stopwatch, I will be using the ATmega324A microcontroller. The 
 
  We are working with an 8MHz AVR clock.
 - PRE: 8
-
+- Compare match (A) every 10ms
 
 ### Output Compare Register 1 A
+
 CLK / PRE = 8 000 000 / 8 = 1 000 000 ticks / second
 
 1 000 000 / 100 = 1 000 clock cycles every 10ms
