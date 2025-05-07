@@ -9,13 +9,13 @@ The stopwatch will count up and have two digits illuminated to represent the tim
 - When counting from 10-99s, the tens and ones place will be illuminated. The display will update every 1s.
 
 The stopwatch will also have two buttons:
-- Start/stop button: 
+- Start/stop button: Starts the stopwatch if it is paused or in the reset state, otherwise pauses the stopwatch.
 - Reset button: Sends the stopwatch to a reset state, turning off the display and clearing the time elapsed.
 
 ## State Diagram
 
 
-To make the stopwatch, I will be using the ATmega324A microcontroller. The setup will reference the megaAVR data sheet, which can be found <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf"> here</a>.
+To implement the stopwatch, I will be using the ATmega324A microcontroller. The setup will reference the megaAVR data sheet, which can be found <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf"> here</a>.
 
 ## Setting up Timer/Counter 1
 
