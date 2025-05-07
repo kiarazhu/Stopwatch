@@ -31,8 +31,21 @@ To implement the stopwatch, I will be using the ATmega324A microcontroller. The 
 
 <img width="650" alt="TCCR1A" src="https://github.com/user-attachments/assets/749fbcc0-3127-45d2-afd8-a18c5d0b0eee" />
 
+<img width="650" alt="COM" src="https://github.com/user-attachments/assets/65b7e185-bdd6-4ee6-865b-c8f01ca92fc4" />
+
+Our desired Compare Output Mode (non-PWM) is Clear on Compare Match, so we will be setting COM1A1 to 1.
+
 ### Timer/Counter 1 Control Register B
 <img width="650" alt="TCCR1B" src="https://github.com/user-attachments/assets/1e6a0605-6695-4424-86b0-5183d6fa3f30" />
+
+<img width="650" alt="CS" src="https://github.com/user-attachments/assets/94de73ba-d9c9-4b96-b31a-9c7607d95dea" />
+
+Since we have $CLK_{IO}/8$ (from prescaler), CS11 will be set to 1. 
+
+<img width="650" alt="WGM" src="https://github.com/user-attachments/assets/50089e22-ce27-4bdb-831e-4a11dda13dc3" />
+
+To set the Timer/Counter mode of operation to CTC with TOP set to OCR1A, we need to set WGM12 to 1.
+
 
 
 
