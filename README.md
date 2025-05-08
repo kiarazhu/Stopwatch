@@ -19,7 +19,7 @@ To implement the stopwatch, I will be using the ATmega324A microcontroller. The 
 
 ### Output Compare Register 1 A
 
-First, we should understand how frequently we wish for an output compare. The shortest amount of time we are required to increment is every 0.1s (when counting 0.0-9.9s). Thus, we will setup timer/counter 1 to reach a compare match (A) every 10ms. 
+First, we should understand how frequently we wish for an output compare. The shortest amount of time we are required to count is every 0.1s (for incrementing from 0.0-9.9s). Thus, we will setup timer/counter 1 to reach a compare match (A) every 10ms. 
 
 To obtain the OCR value, we can use the following formula:
 
@@ -31,17 +31,21 @@ PRE: Clock prescaler; we will use PRE = 8.
 
 FREQ: Number of compare matches per second (1000 / 10 = 100). 
 
+We can now evaluate OCR1A as follows:
+
 $OCR1A = 8 000 000 / (8 * 100) - 1 = 1000 - 1 = 9999$
 
 $OCR1A = 9999$
 
 ### Timer/Counter 1 Control Register A
 
+The bits of TCCR1A are shown below:
+
 <img width="650" alt="TCCR1A" src="https://github.com/user-attachments/assets/749fbcc0-3127-45d2-afd8-a18c5d0b0eee" />
 
 <img width="650" alt="COM" src="https://github.com/user-attachments/assets/65b7e185-bdd6-4ee6-865b-c8f01ca92fc4" />
 
-Our desired Compare Output Mode (non-PWM) is Clear on Compare Match, so we will be setting COM1A1 to 1.
+Our desired Compare Output Mode (non-PWM) is Clear on Compare Match on OC1A, so we will be setting COM1A1 to 1.
 
 ### Timer/Counter 1 Control Register B
 <img width="650" alt="TCCR1B" src="https://github.com/user-attachments/assets/1e6a0605-6695-4424-86b0-5183d6fa3f30" />
