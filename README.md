@@ -10,10 +10,7 @@ The stopwatch will also have two buttons:
 - Start/stop button: Starts the stopwatch if it is paused or in the reset state, otherwise pauses the stopwatch.
 - Reset button: Sends the stopwatch to a reset state, turning off the display and clearing the time elapsed.
 
-## State Diagram
-(Insert diagram here)
-
-To implement the stopwatch, I will be using the ATmega324A microcontroller. The setup relies on the megaAVR data sheet, which can be found <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf"> here</a>.
+To implement the stopwatch, I will be using the ATmega324A microcontroller. A timer/counter will be used to track the time elapsed, whereas interrupts will be set up to handle button press events. This setup references the megaAVR data sheet, which can be found <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega164A_PA-324A_PA-644A_PA-1284_P_Data-Sheet-40002070B.pdf"> here</a>.
 
 ## Setting up Timer/Counter 1
 
@@ -62,16 +59,30 @@ To set the Timer/Counter mode of operation to CTC with TOP set to OCR1A, we need
 
 
 ## Setting up Interrupts
-Implementation Notes:
 
-If a var can be changed outside the normal flow of a program, it should be declared as `volatile`.
+
+
+(What modes?)
+
+
+
+## Writing the Code
+
+Now that we know how we should set our status registers, we are ready to write the program. 
+
+Coding Notes:
+- The <avr/io.h> header file includes the apropriate IO definitions for the device.
+- 
+- If a variable can be changed outside the normal flow of a program (i.e in the interrupt handler), it should be declared as `volatile`.
+- Calling `sei()` turns on interrupts globally. 
 
 ## I/O Board Connections
 
+Port A pins will be used to output the seven segment display values. Additionally, pin C0 will output the CC value (which will oscillate between high to low during running/paused states to display both digits). 
+
 <img width="650" alt="Pinout" src="https://github.com/user-attachments/assets/4bd974fc-c7cb-4137-bdad-6b76e1fec801" />
 
-INT1: PD3 on pinout
-INT0: PD2 on pinout
+According to the pinout diagram above, INT0 corresponds to PD2 while INT1 corresponds to PD3. These two pins will thus be used for the start/stop and reset buttons respectively.
 - Seven segment display A to DP connected to AVR port A 
 - Seven segment display CC connected to AVR pin C0
 - Button B0 connected to AVR pin D2 - this is the start/stop button
