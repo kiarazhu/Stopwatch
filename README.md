@@ -42,7 +42,7 @@ The bits of TCCR1A are shown below:
 
 <img width="650" alt="COM" src="https://github.com/user-attachments/assets/65b7e185-bdd6-4ee6-865b-c8f01ca92fc4" />
 
-Our desired Compare Output Mode (non-PWM) is Clear on Compare Match on OC1A, so we will be setting COM1A1 to 1.
+Our desired Compare Output Mode (non-PWM) is Clear on Compare Match on OC1A, so we will be setting COM1A1 (bit 7 of TCCR1A) to 1.
 
 ### Timer/Counter 1 Control Register B
 <img width="650" alt="TCCR1B" src="https://github.com/user-attachments/assets/1e6a0605-6695-4424-86b0-5183d6fa3f30" />
@@ -55,14 +55,38 @@ Since we have $CLK_{IO}/8$ (from prescaler), CS11 will be set to 1.
 
 To set the Timer/Counter mode of operation to CTC with TOP set to OCR1A, we need to set WGM12 to 1.
 
-
+Hence, bits 1 and 3 of TCC1B will be set to 1.
 
 
 ## Setting up Interrupts
 
+### Timer/Counter1 Interrupt Mask Register
+
+<img width="650" alt="TIMSK1" src="https://github.com/user-attachments/assets/7cb6dd10-b871-4266-b4d0-1988978f07e7" />
+
+Setting OCIE1A to 1 will enable Timer/Counter1 Output Compare A Match interrupts (provided that global interrupts are enabled). Therefore, we will set bit 1 in TIMSK1 to 1.
 
 
-(What modes?)
+### Timer/Counter1 Interrupt Flag Register
+<img width="650" alt="TIFR" src="https://github.com/user-attachments/assets/e198d2e0-b5b0-470d-a310-8e11af409f20" />
+
+To clear the output compare flag, we must write a 1 to OCF1A; bit 1 of TIFR1 will be set to 1. 
+
+
+### External Interrupt Control Register A
+
+<img width="650" alt="EICRA" src="https://github.com/user-attachments/assets/30798969-4ef6-4ebb-ae53-37b6be8d1e65" />
+<img width="650" alt="ISC" src="https://github.com/user-attachments/assets/458a5a7a-9b98-4a7f-a27e-1b70d3455e1c" />
+
+For a rising edge interrupt, ISC00 and ISC01 (bits 0 and 1) in the EICRA register will both be set to 1.
+
+### External Interrupt Mask Register
+
+<img width="650" alt="EIMSK" src="https://github.com/user-attachments/assets/5af3bbc4-ad70-4129-a938-7e328bb0f30c" />
+
+### External Interrupt Flag Register
+
+<img width="650" alt="EIFR" src="https://github.com/user-attachments/assets/66227367-6919-41cb-9103-2870fd392b3c" />
 
 
 
@@ -71,7 +95,7 @@ To set the Timer/Counter mode of operation to CTC with TOP set to OCR1A, we need
 Now that we know how we should set our status registers, we are ready to write the program. 
 
 Coding Notes:
-- The <avr/io.h> header file includes the apropriate IO definitions for the device.
+- The <avr/io.h> header file includes all of the relevant I/O definitions for our program.
 - 
 - If a variable can be changed outside the normal flow of a program (i.e in the interrupt handler), it should be declared as `volatile`.
 - Calling `sei()` turns on interrupts globally. 
